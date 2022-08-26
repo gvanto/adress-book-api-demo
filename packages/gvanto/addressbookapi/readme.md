@@ -1,4 +1,4 @@
-## Address Book API Demo Package
+# Address Book API Demo Package
 
 ### Setup
 
@@ -39,7 +39,7 @@ Create DB and user:
 
 <br>
 
-### Address Book API Endpoints
+## Address Book API Endpoints
 
 Endpoints base URI: http://localhost:8000/addressbookapi.
 
@@ -48,7 +48,7 @@ A tool such as PostMan can be be used to test the endpoints.
 Note that any validation failures will result in a 422 status response 
 (with corresponding message).
 
-#### Add Person To Address Book
+### Add Person To Address Book
 POST: {base_uri}/persons/add
 
 **Inputs:**
@@ -81,7 +81,7 @@ in JSON format.
 
 ![PostMan request example](assets/postman-request-example.png "PostMan request example")
 
-#### Add Group To Address Book
+### Add Group To Address Book
 POST: {base_uri}/groups/add
 
 **Inputs:**
@@ -95,7 +95,7 @@ POST: {base_uri}/groups/add
 On a successful request (Status 200), the created Group's id is returned
 in JSON format.
 
-#### Get Group Members
+### Get Group Members
 GET: {base_uri}/groups/members?group={group}
 
 **Inputs:**
@@ -108,7 +108,7 @@ GET: {base_uri}/groups/members?group={group}
 
 JSON array containing the group's members (with result count).
 
-#### Get Person's Groups
+### Get Person's Groups
 GET: {base_uri}/persons/groups?id={id}
 
 **Inputs:**
@@ -121,7 +121,7 @@ GET: {base_uri}/persons/groups?id={id}
 
 JSON array containing the person's member groups (with count).
 
-#### Find Person By Name
+### Find Person By Name
 GET: {base_uri}/persons/find-by-name?first_name={first_name}&last_name={last_name}
 
 **Inputs:**
@@ -138,7 +138,7 @@ of both being used, a logical AND is applied to the search.)
 
 JSON array containing the person(s) found (with result count).
 
-#### Find Person By Email
+### Find Person By Email
 GET: {base_uri}/persons/find-by-email?email={email}
 
 **Inputs:**
@@ -151,4 +151,3 @@ will match with 'peter@smith.com.</li>
 **Response:**
 
 JSON array containing the person(s) found (with result count).
-
