@@ -37,6 +37,10 @@ Create DB and user:
 >
 > FLUSH PRIVILEGES;
 
+Run migrations:
+
+> php artisan migrate
+
 <br>
 
 ## Address Book API Endpoints
