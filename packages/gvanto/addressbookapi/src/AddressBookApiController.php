@@ -162,18 +162,18 @@ class AddressBookApiController
             return response()->json($validator->errors()->all(), 422);
         }
 
-        $person = null;
+        $persons = null;
         $first_name = $request->get('first_name');
         $last_name = $request->get('last_name');
 
         if ($first_name && $last_name) {
-            $person = Person::where('first_name', $first_name)
+            $persons = Person::where('first_name', $first_name)
                 ->where('last_name', $last_name)
-                ->first();
+                ->get();
         } else if ($first_name && !$last_name) {
-            $person = Person::where('first_name', $first_name)->first();
+            $persons = Person::where('first_name', $first_name)->get();
         } else if (!$first_name && $last_name) {
-            $person = Person::where('last_name', $last_name)->first();
+            $persons = Person::where('last_name', $last_name)->get();
         } else {
             return response()->json(
                 'Either first_name, last_name (or both) must be supplied.',
@@ -181,7 +181,10 @@ class AddressBookApiController
             );
         }
 
-        return response()->json(($person) ? $person->toArray() : ['Person not found.']);
+        return response()->json([
+            'resultCount' => $persons->count(),
+            'person(s)' => $persons->toArray(),
+        ]);
     }
 
     /**

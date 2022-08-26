@@ -45,13 +45,15 @@ Endpoints base URI: http://localhost:8000/addressbookapi.
 
 A tool such as PostMan can be be used to test the endpoints.
 
+Note that any validation failures will result in a 422 status response 
+(with corresponding message).
 
 #### Add Person To Address Book
 POST: {base_uri}/persons/add
 
 **Inputs:**
 
-*Please note: All inputs are required. Array-based input such as address, can
+*Please note: All inputs (for all endpoints) are required. Array-based input such as address, can
 have multiple values ie. a person can have more than one of these.*
 
 <ul>
@@ -79,13 +81,10 @@ in JSON format.
 
 ![PostMan request example](assets/postman-request-example.png "PostMan request example")
 
-
 #### Add Group To Address Book
 POST: {base_uri}/groups/add
 
 **Inputs:**
-
-*Please note: All inputs are required.*
 
 <ul>
 <li><b>name</b>: Group's name, at least 2 characters.</li>
@@ -96,13 +95,10 @@ POST: {base_uri}/groups/add
 On a successful request (Status 200), the created Group's id is returned
 in JSON format.
 
-
 #### Get Group Members
 GET: {base_uri}/groups/members?group={group}
 
 **Inputs:**
-
-*Please note: All inputs are required.*
 
 <ul>
 <li><b>group</b>: Group's name or id.</li>
@@ -110,5 +106,49 @@ GET: {base_uri}/groups/members?group={group}
 
 **Response:**
 
-On a successful request (Status 200), the group's members (with result count)
-will be returned in JSON format.
+JSON array containing the group's members (with result count).
+
+#### Get Person's Groups
+GET: {base_uri}/persons/groups?id={id}
+
+**Inputs:**
+
+<ul>
+<li><b>id</b>: The person's id.</li>
+</ul>
+
+**Response:**
+
+JSON array containing the person's member groups (with count).
+
+#### Find Person By Name
+GET: {base_uri}/persons/find-by-name?first_name={first_name}&last_name={last_name}
+
+**Inputs:**
+
+<ul>
+<li><b>first_name</b>: First name (min 2 characters).</li>
+<li><b>last_name</b>: First name (min 2 characters).</li>
+</ul>
+
+Either first_name, last_name or both can be used (in the case
+of both being used, a logical AND is applied to the search.)
+
+**Response:**
+
+JSON array containing the person(s) found (with result count).
+
+#### Find Person By Email
+GET: {base_uri}/persons/find-by-email?email={email}
+
+**Inputs:**
+
+<ul>
+<li><b>email</b>: Email or sub-string of it. Using 'pete'
+will match with 'peter@smith.com.</li>
+</ul>
+
+**Response:**
+
+JSON array containing the person(s) found (with result count).
+
