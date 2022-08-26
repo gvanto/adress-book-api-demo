@@ -154,6 +154,6 @@ JSON array containing the person(s) found (with result count).
 
 ## Unit Testing
 
-In project root folder, run Address Book API unit tests:
+In the project root folder, run the Address Book API unit tests with:
 
 > phpunit --filter=AddressBookAPI
