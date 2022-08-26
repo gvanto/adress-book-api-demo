@@ -151,3 +151,9 @@ will match with 'peter@smith.com.</li>
 **Response:**
 
 JSON array containing the person(s) found (with result count).
+
+## Unit Testing
+
+In project root folder, run Address Book API unit tests:
+
+> phpunit --filter=AddressBookAPI
