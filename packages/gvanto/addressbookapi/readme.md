@@ -4,7 +4,7 @@
 
 #### Project
 
-Create a project folder on your local and do a git clone as follows:
+Create a project folder and CD to it. Do a git clone as follows:
 
 > git clone git@github.com:gvanto/adress-book-api-demo.git .
 
@@ -20,7 +20,7 @@ a Laravel page.
 #### MySQL Database
 
 To quickly get the addressbookapi database up and running we can 
-set up using Docker:
+set it up using Docker:
 
 Create the MySQL container:
 > docker container run --name addressbookapi-mysql --publish 3306:3306 -e MYSQL_ROOT_PASSWORD=hello123 -d mysql:5.7
@@ -37,6 +37,7 @@ Create DB and user:
 >
 > FLUSH PRIVILEGES;
 
+<br>
 
 ### Address Book API Endpoints
 
@@ -68,7 +69,23 @@ be added to. If the group doesn't exist it will be created.
 </li>
 </ul>
 
+**Response**
+On a successful request (Status 200), the created person's data is returned
+in JSON format.
 
+PostMan request example:
 
+![PostMan request example](https://pasteboard.co/xWhEPIQwN2XM.png "PostMan request example")
+
+##### Add Group To Address Book
+POST: {base_uri}/groups/add
+
+**Inputs:**
+
+*Please note: All inputs are required.*
+
+<ul>
+<li><b>first_name</b>: First name, at least 2 characters</li>
+</ul>
 
 

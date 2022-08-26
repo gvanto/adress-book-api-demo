@@ -84,5 +84,16 @@ class Person extends Model
         return $e->save();
     }
 
-
+    /**
+     * Add emails to array output
+     *
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return array_merge(
+            parent::toArray(),
+            ['emails' => $this->emails->pluck('email')->toArray()]
+        );
+    }
 }

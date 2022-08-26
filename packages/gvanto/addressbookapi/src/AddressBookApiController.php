@@ -63,10 +63,7 @@ class AddressBookApiController
             $group->persons()->attach($person);
         }
 
-        return response()->json([
-            'message' => 'Person successfully created.',
-            'person' => $person->toArray(),
-        ]);
+        return response()->json($person->toArray());
     }
 
     /**
