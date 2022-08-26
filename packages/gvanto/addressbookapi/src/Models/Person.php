@@ -85,7 +85,7 @@ class Person extends Model
     }
 
     /**
-     * Add emails to array output
+     * Add emails & groups to array output
      *
      * @return array
      */
@@ -93,7 +93,8 @@ class Person extends Model
     {
         return array_merge(
             parent::toArray(),
-            ['emails' => $this->emails->pluck('email')->toArray()]
+            ['emails' => $this->emails->pluck('email')->toArray()],
+            ['groups' => $this->groups->pluck('name')->toArray()]
         );
     }
 }

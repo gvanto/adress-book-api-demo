@@ -2,9 +2,9 @@
 
 namespace gvanto\addressbookapi;
 
-use gvanto\addressbookapi\Models\Email;
 use gvanto\addressbookapi\Models\Group;
 use gvanto\addressbookapi\Models\Person;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -206,13 +206,17 @@ class AddressBookApiController
         // cater for more than one result
         /** @var Collection $persons */
         $persons = null;
-        $query = Person::leftJoin('emails', 'persons.id', 'emails.person_id');
+
+        /** @var Builder $query */
+        $query = Person::select('persons.*')->leftJoin('emails', 'persons.id', 'emails.person_id');
 
         if (strpos($email, '@') !== false) {
-            $persons = $query->where('emails.email', $email)->get();
+            $query = $query->where('emails.email', $email);
         } else {
-            $persons = $query->where('emails.email', 'like', $email . '%')->get();
+            $query = $query->where('emails.email', 'like', $email . '%');
         }
+        // avoid return duplicate persons if more than one email matches
+        $persons = $query->groupBy('persons.id')->get();
 
         return response()->json([
             'resultCount' => $persons->count(),
