@@ -73,9 +73,9 @@ be added to. If the group doesn't exist it will be created.
 On a successful request (Status 200), the created person's data is returned
 in JSON format.
 
-PostMan request example:
+**PostMan request example:**
 
-![PostMan request example](https://pasteboard.co/xWhEPIQwN2XM.png "PostMan request example")
+![PostMan request example](assets/postman-request-example.png "PostMan request example")
 
 ##### Add Group To Address Book
 POST: {base_uri}/groups/add
@@ -85,7 +85,12 @@ POST: {base_uri}/groups/add
 *Please note: All inputs are required.*
 
 <ul>
-<li><b>first_name</b>: First name, at least 2 characters</li>
+<li><b>name</b>: Group's name, at least 2 characters.</li>
 </ul>
+
+**Response**
+
+On a successful request (Status 200), the created Group's id is returned
+in JSON format.
 
 
