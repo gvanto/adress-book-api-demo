@@ -1,0 +1,24 @@
+{
+    "name": "gvanto/addressbookapi",
+    "description": "A simple address book API.",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Gert van Tonder",
+            "email": "gvanto@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "gvanto\\addressbookapi\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "gvanto\\addressbookapi\\ServiceProvider"
+            ]
+        }
+    }
+}
