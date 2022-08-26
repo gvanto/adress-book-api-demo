@@ -45,13 +45,14 @@ Endpoints base URI: http://localhost:8000/addressbookapi.
 
 A tool such as PostMan can be be used to test the endpoints.
 
-##### Add Person To Address Book
+
+#### Add Person To Address Book
 POST: {base_uri}/persons/add
 
 **Inputs:**
 
 *Please note: All inputs are required. Array-based input such as address, can
-have multiple values ie. a persn can have more than one of these.*
+have multiple values ie. a person can have more than one of these.*
 
 <ul>
 <li><b>first_name</b>: First name, at least 2 characters</li>
@@ -69,7 +70,8 @@ be added to. If the group doesn't exist it will be created.
 </li>
 </ul>
 
-**Response**
+**Response:**
+
 On a successful request (Status 200), the created person's data is returned
 in JSON format.
 
@@ -77,7 +79,8 @@ in JSON format.
 
 ![PostMan request example](assets/postman-request-example.png "PostMan request example")
 
-##### Add Group To Address Book
+
+#### Add Group To Address Book
 POST: {base_uri}/groups/add
 
 **Inputs:**
@@ -88,9 +91,24 @@ POST: {base_uri}/groups/add
 <li><b>name</b>: Group's name, at least 2 characters.</li>
 </ul>
 
-**Response**
+**Response:**
 
 On a successful request (Status 200), the created Group's id is returned
 in JSON format.
 
 
+#### Get Group Members
+GET: {base_uri}/groups/members?group={group}
+
+**Inputs:**
+
+*Please note: All inputs are required.*
+
+<ul>
+<li><b>group</b>: Group's name or id.</li>
+</ul>
+
+**Response:**
+
+On a successful request (Status 200), the group's members (with result count)
+will be returned in JSON format.
